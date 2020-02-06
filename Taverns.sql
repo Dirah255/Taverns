@@ -118,11 +118,11 @@ INSERT INTO Location
  St,
  Zip)
 VALUES
-    ('987 East Dr.','Ste G', 'NJ', 00254),
-    ('101 North St.', ,'PA', 19100),
-    ('123 W Well St.', , 'DE', 09050)
-    ('1 Imagination Ave.', ,'AK', 99998),
-    ('321 E LLEW St.', ,'DE', 05090);
+    ('987 East Dr.', 'Ste G', 'NJ', 00254),
+    ('101 North St.', '','PA', 19100),
+    ('123 W Well St.', '' , 'DE', 09050)
+    ('1 Imagination Ave.', '' ,'AK', 99998),
+    ('321 E LLEW St.', '' ,'DE', 05090);
 
 INSERT INTO Rat
 (Name)
