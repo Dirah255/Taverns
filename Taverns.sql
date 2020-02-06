@@ -139,11 +139,11 @@ INSERT INTO Inventory
  UpDated,
  Status)
 VALUES
-    ('Strong Ale', 3.50, 10, 'Barrel', 2020-02-02 21:45:20, 1),
-    ('Yummy Pie', 2.00, 3, 'Slices', 2020-10-01 10:35:10, 1),
-    ('Dry Bread', .50, 15,'Loaf', 2020-15-01 11:40:40, 1),
-    ('Chewing Tobacco', 1.00, 0 , 'Box', 2020-05-02 15:15:16, 0),
-    ('Hard Candy', 0.25, 0, 'Piece', 1987-26-05 12:34:56, 1);
+    ('Strong Ale', 3.50, 10, 'Barrel', 2020-02-02, 1),
+    ('Yummy Pie', 2.00, 3, 'Slices', 2020-10-01, 1),
+    ('Dry Bread', .50, 15,'Loaf', 2020-15-01, 1),
+    ('Chewing Tobacco', 1.00, 0 , 'Box', 2020-05-02, 0),
+    ('Hard Candy', 0.25, 0, 'Piece', 1987-26-05, 1);
 
 INSERT INTO Service
 ( Name, 
