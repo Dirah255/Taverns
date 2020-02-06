@@ -2,7 +2,7 @@ CREATE TABLE Tavern
 (
 	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Name char(40) NOT NULL,
-	Floors char(40)
+	Floors char(40),
 	LocationId int NOT NULL FOREIGN KEY REFERENCES Location(Id),
 	OwnerId int NOT NULL FOREIGN KEY REFERENCES Owner(Id),
 	RatId int FOREIGN KEY REFERENCES Rat(Id),
