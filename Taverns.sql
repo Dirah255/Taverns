@@ -86,10 +86,10 @@ INSERT INTO Tavern
  SaleId) 
 VALUES
     ('Northside', 109, 1, 2, 3, 1, 2, 4),
-    ('Westside', 54, 2, 3, 2, 2, , 1),
+    ('Westside', 54, 2, 3, 2, 2, 0, 1),
     ('Eastside', 8, 3, 1, 1, 3, 1, 2),
-    ('We Side', 4, 4, 5, , 2, 2, 5),
-    ('UpsideDown', 1, 5, 4, , 5, 4, 3);
+    ('We Side', 4, 4, 5, 0, 2, 2, 5),
+    ('UpsideDown', 1, 5, 4, 0, 5, 4, 3);
 
 
 INSERT INTO Owner
