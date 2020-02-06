@@ -37,7 +37,7 @@ CREATE TABLE Location
 CREATE TABLE Rat
 (
 	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Name char(40) NOT NULL,
+	Name char(40) NOT NULL
 );
 
 CREATE TABLE Inventory
