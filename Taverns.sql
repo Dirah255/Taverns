@@ -80,7 +80,7 @@ INSERT INTO Tavern
  Name,
  Floors,
  LocationId,
- UserId,
+ OwnerId,
  RatId,
  InventoryId,
  ServiceId,
