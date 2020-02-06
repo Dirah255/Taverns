@@ -48,7 +48,7 @@ CREATE TABLE Inventory
 	Unit char(40) NOT NULL, 
 	Qty int(2) NOT NULL,
 	UpDated DATETIME NOT NULL,
-	Status int NOT NULL FOREIGN KEY REFERENCES Staus(Id),
+	Status int NOT NULL FOREIGN KEY REFERENCES Staus(Id)
 );
 
 CREATE TABLE Service
@@ -56,7 +56,7 @@ CREATE TABLE Service
 	Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Name char(40) NOT NULL,
 	Price dec NOT NULL, 
-	Status int NOT NULL FOREIGN KEY REFERENCES Status(Id),
+	Status int NOT NULL FOREIGN KEY REFERENCES Status(Id)
 );
 
 CREATE TABLE Status
