@@ -171,7 +171,7 @@ INSERT INTO Sale
  Qty,
  Total)
 VALUES
-	('Kitty', 2, , 1, 2.00),
+	('Kitty', 2, 0, 1, 2.00),
 	('Tiger', 3, 1, 1, 1.20),
 	('Bubbles', 5, 4, 1, 100.25),
 	('Prince', 1, 2, 1, 4.20),
