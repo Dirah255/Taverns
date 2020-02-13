@@ -1,8 +1,11 @@
+DROP TABLE if exists Room_Stay;
+DROP TABLE if exists Rooms;
+DROP TABLE if exists Status; 
+DROP TABLE if exists Tavern;
 DROP TABLE if exists GUEST_CLASS;
 DROP TABLE if exists CLASS;
 DROP TABLE if exists GUEST;
-DROP TABLE if exists Room_Stay;
-DROP TABLE if exists Rooms;
+DROP TABLE if exists TavernBackUp;
 
 CREATE TABLE GUEST
 (ID Int PRIMARY KEY IDENTITY (1,1),
@@ -19,16 +22,32 @@ CREATE TABLE CLASS
 )
 
 CREATE TABLE GUEST_CLASS
-(GuestID int,
- ClassID int,
+(GuestID int REFERENCES GUEST(ID),
+ ClassID int REFERENCES CLASS(ID),
  ClassLvls int
  )
+
+ CREATE TABLE Status
+(
+	ID INTEGER NOT NULL PRIMARY KEY IDENTITY,
+	Description varchar (40) NOT NULL
+);
+
+CREATE TABLE Tavern
+(
+	ID INTEGER NOT NULL PRIMARY KEY IDENTITY,
+	Name varchar(40) NOT NULL,
+	Floors varchar(40),
+	LocationId int NOT NULL,
+	OwnerId int NOT NULL,
+);
+
 
  CREATE TABLE Rooms
 (
 	ID int NOT NULL PRIMARY KEY IDENTITY,
-	StatusID int,
-	TavernID int
+	StatusID int REFERENCES Status(Id),
+	TavernID int REFERENCES Tavern(Id)
 )
 
 CREATE TABLE Room_Stay
@@ -40,13 +59,6 @@ CREATE TABLE Room_Stay
 	Rate int
 )
 
-
- ALTER TABLE GUEST_CLASS
- ADD FOREIGN KEY (GuestID) REFERENCES GUEST(ID);
-
- ALTER TABLE GUEST_CLASS
- ADD FOREIGN KEY (ClassID) REFERENCES CLASS(ID);
-
  
  INSERT INTO CLASS(Name)
  VALUES ('Dragon School'),
@@ -55,18 +67,42 @@ CREATE TABLE Room_Stay
 		('Bull Riding');
 
 INSERT INTO GUEST(Name, Note, DOB, CakeDay, Status)
-VALUES  ('Anna','Brave','2003-10-10', '4802-34-09','Chillin'),
-		('Elsa','Powerful','1223-69-12', '4802-34-09','Spirited'),
-		('Olaf','Cute','1223-69-12', '4802-34-09','Singing'),
-		('Kristoff','Funny','1223-69-12', '4802-34-09','Planning'),
-		('Hans','Evil','1223-69-12', '4802-34-09','Plotting');
+VALUES  ('Anna','Brave', '2007-05-08', '2007-05-08','Chillin'),
+		('Elsa','Powerful','1992-01-12', '4802-34-09','Spirited'),
+		('Olaf','Cute','1980-08-08', '4802-34-09','Singing'),
+		('Kristoff','Funny','2019-12-12', '4802-34-09','Planning'),
+		('Hans','Evil','2020-05-05', '4802-34-09','Plotting');
 
 INSERT INTO GUEST_CLASS (GuestID,  ClassID, ClassLvls)
 VALUES (1, 4, 3),
 	   (1, 3, 2),
 	   (5, 1, 10),
 	   (2, 2, 1),
+	   (2, 1, 15),
+	   (5, 3, 10),
+	   (3, 3, 10),
+	   (2, 4, 25),
 	   (3, 1, 4);
+
+INSERT INTO Tavern
+(Name,
+ Floors,
+ LocationId,
+ OwnerId) 
+VALUES
+    ('Northside', 109, 1, 2),
+    ('Westside', 54, 2, 3),
+    ('Eastside', 8, 3, 1),
+    ('We Side', 4, 4, 5),
+    ('UpsideDown', 1, 5, 4);
+	   
+INSERT INTO Status
+(Description)
+VALUES
+	('Active'),
+	('Inactive'),
+	('Not Handicapped'),
+	('Handicapped')
 
 INSERT INTO Rooms
 (StatusID,
@@ -92,7 +128,7 @@ INSERT INTO Room_Stay
  Rate)
 
 VALUES
-('Joe Jack', 2, '10-45-122 to 12-54-2013', 300),
+('Joe Jack', 2, '10-45-1227 to 45-45-7541', 300),
 ('Billy Bob', 3, '23-57-8975 to 23-57-35', 500),
 ('Jesse Jones', 6, '45-46-9087 to 45-45-86', 800),
 ('Al Alferd',4, '33-78-0975 to 45-78-9075', 50),
@@ -105,17 +141,37 @@ VALUES
 ('Vern Vattle', 8, '09-46-463 to 45-76-9742',890),
 ('Henry He', 1, '76-35-9752 to 34-6069',30);
 
+--#2
+SELECT DOB FROM GUEST WHERE DOB <'2000-12-31';
 
-
-
-
+--#3
 SELECT * FROM Room_Stay
 WHERE Rate>100;
 
+--#4
 SELECT * FROM GUEST
 ORDER BY Name DESC;
 
+--#5
 SELECT DISTINCT GuestName FROM Room_Stay;
 
+--#6
 SELECT * FROM Room_Stay WHERE SaleID BETWEEN 1 AND 10
-ORDER BY RATE DESC 
+ORDER BY RATE DESC;
+
+--#7
+SELECT ID, (SELECT CAST(TavernID as varchar(40))) as TavernID FROM Rooms 
+UNION ALL
+SELECT ID, Description FROM Status 
+
+--#8
+SELECT (CASE WHEN ClassLvls <10 THEN 'Lvl 1-10'
+WHEN ClassLvls BETWEEN 10 AND 20 THEN 'Lvl 11-20' 
+WHEN ClassLvls> 20 THEN 'Lvl 21-Up' END) 
+as ClassGroupLvls FROM GUEST_CLASS
+
+--#9
+SELECT * INTO TavernBackUp FROM Tavern
+
+
+
